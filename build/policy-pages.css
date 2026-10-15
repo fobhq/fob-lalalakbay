@@ -1,0 +1,49 @@
+/* Shared reading layout for policy documents, scoped away from the booking flow. */
+.policy-document{--line:#68547755;--beige:#ccc2d6;--gold:#efa1d2;--champagne:#f3e5f5;--policy-panel:#171222;background:#0d0b19;color:#f6f0fa;font-family:Inter,Poppins,sans-serif;font-size:16px}
+.policy-document::before{display:none}
+.policy-document *,.policy-document *::before,.policy-document *::after{box-sizing:border-box}
+.policy-document main{background:radial-gradient(ellipse at 85% 0,#6b3c7e14,transparent 36%)}
+.policy-document .container{width:calc(100% - 64px);max-width:1180px;margin-inline:auto;min-width:0}
+.policy-document .privacy-hero{padding:56px 0 36px;background:transparent;border:0}
+.policy-document .privacy-hero .eyebrow{font-size:12px;line-height:1.6;letter-spacing:.12em;color:var(--ll-pink);margin:0 0 16px}
+.policy-document .privacy-hero h1{font-family:Sora,Inter,sans-serif;font-size:56px;font-weight:700;line-height:1.15;letter-spacing:-.045em;text-transform:none;margin:0 0 20px;color:#faf4fe;overflow-wrap:anywhere}
+.policy-document .privacy-hero>div>p:not(.eyebrow){max-width:730px;font-size:17px;line-height:1.85;color:#c9bfd4;margin:0}
+.policy-document .privacy-meta{display:flex;flex-direction:row;flex-wrap:wrap;gap:10px;margin-top:24px;align-items:stretch}
+.policy-document .privacy-meta span{width:auto;padding:10px 14px;background:#21182e;border:1px solid var(--line);border-radius:10px;color:#d9c6e4;font-size:12px;line-height:1.6;text-transform:none;letter-spacing:0}
+.policy-document .privacy-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:32px;padding-top:24px;padding-bottom:80px;align-items:start}
+.policy-document .privacy-toc{position:sticky;top:138px;max-height:calc(100dvh - 162px);overflow-y:auto;align-self:start;display:flex;flex-direction:column;gap:4px;background:var(--policy-panel);border:1px solid var(--line);border-radius:16px;padding:18px}
+.policy-document .privacy-toc small{display:block;padding:4px 10px 14px;color:var(--ll-pink);font-size:11px;font-weight:600;line-height:1.6;letter-spacing:.12em}
+.policy-document .privacy-toc a{display:flex;align-items:center;min-height:44px;padding:10px;border:0;border-radius:8px;background:transparent;color:#cfc2dd;font-size:14px;line-height:1.6;text-transform:none;letter-spacing:0;text-decoration:none;overflow-wrap:anywhere;transition:background .2s,color .2s}
+.policy-document .privacy-toc a:hover{padding-left:10px;background:#30213e;color:#f2c3e5}
+.policy-document .privacy-copy{min-width:0;width:100%;max-width:none;margin:0;padding:0;border:0;background:transparent}
+.policy-document .privacy-copy>section{scroll-margin-top:140px;min-width:0;padding:32px;margin:0 0 22px;border:1px solid var(--line);border-radius:18px;background:var(--policy-panel)}
+.policy-document .privacy-copy>section:last-child{margin-bottom:0;border-bottom:1px solid var(--line)}
+.policy-document .privacy-number{display:block;font-size:12px;font-weight:600;line-height:1.6;letter-spacing:.1em;color:var(--ll-pink);margin-bottom:10px}
+.policy-document .privacy-copy h2{font-family:Sora,Inter,sans-serif;font-size:28px;font-weight:600;line-height:1.4;letter-spacing:-.025em;text-transform:none;margin:0 0 20px;color:#f7f0fb;overflow-wrap:anywhere}
+.policy-document .privacy-copy p,.policy-document .privacy-copy li{font-size:16px;line-height:1.9;color:#d0c5da;overflow-wrap:anywhere}
+.policy-document .privacy-copy p{margin:0 0 18px}.policy-document .privacy-copy p:last-child{margin-bottom:0}
+.policy-document .privacy-copy ul{list-style:disc;margin:20px 0;padding:0 0 0 22px;border:0}
+.policy-document .privacy-copy li{padding:0 0 0 4px;margin:0 0 14px;border:0}.policy-document .privacy-copy li:last-child{margin-bottom:0}
+.policy-document .privacy-copy li::before{content:none}.policy-document .privacy-copy li::marker{color:var(--ll-pink)}
+.policy-document .privacy-copy strong{color:#f0d9ee;font-weight:600}
+.policy-document .privacy-copy a{color:#efb4db;text-decoration:underline;text-underline-offset:4px;overflow-wrap:anywhere}
+.policy-document main a:focus-visible{outline:2px solid var(--ll-pink);outline-offset:4px;border-radius:4px}
+.policy-document .privacy-callout{margin:24px 0 0;padding:22px 24px;border:1px solid #b484bf55;border-left:3px solid var(--ll-pink);border-radius:0 12px 12px 0;background:#2c1d39}
+.policy-document .privacy-callout strong{font-size:12px;font-weight:600;line-height:1.6;color:var(--ll-pink);letter-spacing:.08em}
+.policy-document .privacy-callout p{font-size:15px;line-height:1.85;margin:10px 0 0;color:#e6d4ea}
+.policy-document .privacy-purpose-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0;border:0}
+.policy-document .privacy-purpose-grid>div{min-width:0;min-height:0;padding:20px;border:1px solid var(--line);border-radius:12px;background:#21182d}
+.policy-document .privacy-purpose-grid b{font-size:13px;font-weight:600;line-height:1.6;color:var(--ll-pink);letter-spacing:.03em;text-transform:none}
+.policy-document .privacy-purpose-grid p{font-size:14px;line-height:1.8;margin:10px 0 0}
+.policy-document .privacy-socials{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:24px;border:0}
+.policy-document .privacy-socials a{min-width:0;min-height:94px;padding:18px;border:1px solid var(--line);border-radius:12px;gap:10px;background:#21182d;text-decoration:none}
+.policy-document .privacy-socials a:hover{background:#30213e}.policy-document .privacy-socials span{font-size:12px;line-height:1.6;color:#c7b5d1}.policy-document .privacy-socials strong{font-size:14px;line-height:1.6}
+.policy-document .privacy-copy .privacy-update{font-size:14px!important;line-height:1.8;padding-top:20px;margin-top:24px!important;color:#baacc7}
+.policy-document .policy-snapshot{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;border:0;margin-top:0;margin-bottom:12px}
+.policy-document .policy-snapshot>div{min-width:0;min-height:0;padding:22px;border:1px solid var(--line);border-radius:14px;background:#20172d;justify-content:flex-start}
+.policy-document .policy-snapshot small{font-size:12px;line-height:1.6;color:var(--ll-pink);letter-spacing:.04em;text-transform:none}
+.policy-document .policy-snapshot strong{font-size:30px;line-height:1.4;color:#f4e6fa;margin:8px 0 4px}.policy-document .policy-snapshot span{font-size:13px;line-height:1.6;color:#c6b8d2}
+@media(max-width:1000px){.policy-document .privacy-layout{grid-template-columns:200px minmax(0,1fr);gap:24px}.policy-document .privacy-copy>section{padding:26px}.policy-document .privacy-copy h2{font-size:25px}.policy-document .privacy-hero h1{font-size:46px}.policy-document .privacy-toc{padding:14px}}
+@media(max-width:800px){.policy-document .privacy-layout{grid-template-columns:minmax(0,1fr);gap:24px}.policy-document .privacy-toc{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;max-height:none;overflow:visible;padding:16px}.policy-document .privacy-toc small{display:block;grid-column:1/-1;padding:0 8px 8px}.policy-document .privacy-toc a{min-width:0;min-height:44px;white-space:normal}.policy-document .privacy-copy>section{scroll-margin-top:28px}}
+@media(max-width:600px){.policy-document .container{width:calc(100% - 32px)}.policy-document .privacy-hero{padding:36px 0 28px}.policy-document .privacy-hero h1{font-size:36px;line-height:1.2;margin-bottom:18px}.policy-document .privacy-hero>div>p:not(.eyebrow){font-size:16px;line-height:1.8}.policy-document .privacy-meta{margin-top:20px;gap:8px}.policy-document .privacy-meta span{font-size:12px;padding:10px 12px}.policy-document .privacy-layout{padding-top:20px;padding-bottom:48px;gap:20px}.policy-document .privacy-toc{padding:12px;gap:4px}.policy-document .privacy-toc a{font-size:13px;padding:8px}.policy-document .privacy-toc a:hover{padding-left:8px}.policy-document .privacy-copy>section{padding:24px 20px;margin-bottom:18px;border-radius:14px}.policy-document .privacy-copy h2{font-size:23px;line-height:1.4;margin-bottom:18px}.policy-document .privacy-copy p,.policy-document .privacy-copy li{font-size:16px;line-height:1.85}.policy-document .privacy-copy ul{padding-left:18px}.policy-document .privacy-callout{padding:18px}.policy-document .privacy-callout p{font-size:15px}.policy-document .privacy-purpose-grid,.policy-document .privacy-socials{grid-template-columns:minmax(0,1fr)}.policy-document .policy-snapshot{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:0}.policy-document .policy-snapshot>div{padding:18px 16px}.policy-document .policy-snapshot strong{font-size:26px}}
+@media(prefers-reduced-motion:reduce){.policy-document .privacy-toc a{transition:none}}

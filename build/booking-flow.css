@@ -1,0 +1,172 @@
+/* Simple booking layout: quiet surfaces, sidebar steps, compact decision cards. */
+.form-page{--line:#66507570;--gold:var(--ll-pink);--beige:var(--ll-muted);--champagne:#edc7e4;--wine:#30203f;--booking-surface:#181226;--booking-selected:#33203f;--booking-text:#faf6fd;--booking-focus:#efa1d2}
+.form-page *, .form-page *::before,.form-page *::after{box-sizing:border-box}
+.form-page .booking-shell{width:calc(100% - 32px);max-width:1200px;margin:0 auto;padding:40px 0 120px;display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px 48px;min-height:0}
+.form-page .booking-shell>*{min-width:0}
+.form-page .booking-event{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px;padding:0 4px;color:var(--ll-muted);font-size:14px}
+.form-page .booking-event strong{color:var(--ll-pink);font-size:15px}
+.form-page .progress-nav{display:flex;flex-direction:column;position:sticky;top:24px;align-self:start;margin:0;padding:0;background:transparent;border:0;border-radius:0;gap:0;overflow:visible}
+.form-page .progress-nav button{display:flex;justify-content:flex-start;align-items:center;gap:12px;min-width:0;width:100%;min-height:58px;padding:14px 0;border:0;border-bottom:1px solid var(--line);border-radius:0;font-size:11px;letter-spacing:.03em;color:var(--ll-muted);background:transparent}
+.form-page .progress-nav button.active{background:transparent;border-color:var(--ll-pink);color:var(--booking-text)}
+.form-page .progress-nav button.completed{color:var(--ll-pink)}
+.form-page .progress-nav button.completed::after{display:none}
+.form-page .form-content{min-width:0;padding:0;background:transparent;border:0;border-radius:0}
+.form-page.wizard-ready .form-step{padding:0;margin:0;border:0;background:transparent;min-width:0}
+.form-page .form-step-heading{margin-bottom:28px;gap:16px}
+.form-page .form-step-heading p{margin:10px 0 0;font-size:14px;line-height:1.7;color:var(--ll-muted)}
+.form-page .form-step-heading h2{font-size:30px;line-height:1.2;overflow-wrap:anywhere}
+.form-page .field-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.form-page .field,.form-page .field-grid>*,.form-page .package-choice,.form-page .ride-choice{min-width:0}
+.form-page .field label,.form-page .field>span,.form-page .field-label{font-size:12px;line-height:1.6}
+.form-page input:not([type=checkbox]):not([type=radio]),.form-page select,.form-page textarea{width:100%;max-width:100%;min-width:0;min-height:50px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--booking-text);font-size:16px;padding:12px 14px}
+.form-page input[type=checkbox],.form-page input[type=radio]{accent-color:var(--ll-pink)}
+.form-page :is(button,input,select,textarea,a):focus-visible,.form-page .priority-reason-grid input:focus-visible+span{outline:3px solid var(--booking-focus);outline-offset:3px}
+.form-page .ride-choices{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.form-page .ride-choice{padding:24px;border-radius:2px;background:transparent;border-color:var(--line)}
+.form-page .ride-choice.active{background:var(--booking-selected);border-color:var(--ll-pink)}
+.form-page .ride-choice.active strong::after{content:' ✓';color:var(--ll-pink)}
+.form-page .ride-choice strong{font-size:20px}
+.form-page .ride-choice small{display:block;font-size:12px;margin-top:8px;line-height:1.6}
+.form-page .trip-choice-block{margin-top:32px}.form-page .trip-choice-first{margin-top:0}
+.form-page .package-guide-heading{gap:16px;margin-bottom:20px}.form-page .package-guide-heading p:last-child{font-size:13px;line-height:1.7}
+.form-page .package-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.form-page .package-guide .package-choice{padding:24px;display:flex;flex-direction:column;align-items:stretch;min-height:0;gap:10px;border:1px solid var(--line);border-radius:2px;background:transparent}
+.form-page .package-guide .package-choice.has-slots{background:linear-gradient(145deg,var(--booking-selected),var(--booking-surface));border-color:var(--ll-pink)}
+.form-page .package-tier{font-size:12px;line-height:1.5;color:var(--ll-pink)}
+.form-page .package-guide .package-choice strong{font-size:17px;line-height:1.5;margin:0}
+.form-page .package-guide .package-choice small,.form-page .booking-inclusions li{font-size:12px;line-height:1.7}
+.form-page .package-guide .package-choice b{margin-top:auto;padding-top:24px;font-size:30px;line-height:1.2}
+.form-page .package-guide .package-choice em{font-size:10px}
+.form-page .slot-quantity{margin-top:8px;padding-top:18px;grid-template-columns:minmax(0,1fr) 78px;gap:12px}
+.form-page .slot-quantity>span{font-size:11px}.form-page .slot-quantity select{height:50px;padding:10px}
+.form-page .mobile-slot-setup{display:none}
+.form-page .pickup-date-row{grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;padding:24px;border-radius:2px;background:transparent}
+.form-page .pickup-date-row .field{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+.form-page .pickup-date-row small{font-size:12px}.form-page .pickup-date-row>div strong{font-size:12px;line-height:1.7}
+.form-page :is(.companion-card,.priority-request,.passenger-package-row,.fare-summary,.route-notice,.upload-box,.payment-account-details,.payment-highlight,.payment-schedule,.policy-details){background:transparent;border:1px solid var(--line);border-radius:2px;padding:24px}
+.form-page .route-details:not([open]),.form-page .passenger-subheading{background:var(--booking-surface)}
+.form-page .passenger-subheading{border-color:var(--ll-pink);padding:18px;margin-bottom:24px;border-radius:0 12px 12px 0}
+.form-page .passenger-subheading p,.form-page .priority-toggle small,.form-page .file-note{font-size:12px;line-height:1.7}
+.form-page .priority-reason-grid span{border-radius:10px;font-size:12px;line-height:1.5;min-height:48px}
+.form-page .priority-reason-grid input:checked+span{background:var(--booking-selected);color:var(--ll-pink);border-color:var(--ll-pink)}
+.form-page .seat-toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+.form-page #vehicle-label{font-size:13px}.form-page .seat-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11px}
+.form-page .seat-selection-progress{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;padding:16px 20px;margin-bottom:20px;border:1px solid var(--line);border-radius:12px;background:var(--booking-surface);font-size:13px}
+.form-page .seat-selection-progress strong{color:var(--ll-pink)}
+.form-page .desired-seat-notice{display:flex;gap:14px;margin:0 0 20px;padding:18px 20px;background:#261b31;border:1px solid #c485b180;border-radius:16px}
+.form-page .desired-seat-notice[hidden]{display:none}.form-page .notice-icon{font-size:24px;color:var(--ll-pink);flex:none}
+.form-page .desired-seat-notice h3{font-size:13px;line-height:1.6;margin:0 0 10px;color:var(--ll-pink)}
+.form-page .desired-seat-notice p{font-size:12px;line-height:1.65;margin:6px 0;color:#ddd1e5}.form-page .desired-seat-notice p:last-child{margin-bottom:0}
+.form-page .mobile-swipe-hint{display:block;margin:0 0 14px;padding:0;background:transparent;color:var(--ll-muted);font-size:12px;text-transform:none;letter-spacing:0}
+.form-page .seat-map-scroll{max-width:100%;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;padding:4px 0 16px;margin:0}
+.form-page .seat-map.bus-map{width:600px;min-width:470px;max-width:none;margin:0 auto;padding:24px;background:var(--booking-surface);border:1px solid var(--line);border-radius:2px}
+.form-page .bus-front{grid-template-columns:1fr 72px 1fr;gap:12px;padding-bottom:16px}
+.form-page .driver-block,.form-page .entrance-block{font-size:11px;height:48px;border-radius:8px;background:#241a32;border-color:var(--line)}
+.form-page .bus-front>small,.form-page .row-label{font-size:9px;color:var(--ll-muted)}
+.form-page .seat-guide{font-size:12px;line-height:1.6;padding:14px 0;color:var(--ll-muted)}
+.form-page .lilibus-grid{gap:8px}.form-page .bus-seat-row{grid-template-columns:repeat(2,minmax(0,1fr)) 64px repeat(2,minmax(0,1fr));gap:8px}
+.form-page .seat.bus-seat{height:58px;min-width:0;width:100%;padding:5px;border-radius:2px;background:#211a2c;border:1px solid #776587;color:var(--booking-text)}
+.form-page .seat.bus-seat strong{font-size:13px}.form-page .seat.bus-seat small{font-size:8px;line-height:1.5;letter-spacing:0}
+.form-page .seat.priority,.form-page .seat.priority-access{background:#342b50;color:#dfcdff;border-color:#aa8fe3}
+.form-page .seat.selected,.form-page .seat.priority-access.selected{background:var(--ll-pink);border-color:var(--ll-pink);color:#211127;box-shadow:0 0 0 2px #efa1d233}
+.form-page .seat.selected::after{content:'✓';font-size:10px}.form-page .seat:disabled{cursor:not-allowed}
+.form-page .seat.unavailable,.form-page .seat.volunteer{background:#2a2731;border-color:#57515e;color:#aba4b1;opacity:.7}
+.form-page .seat-legend .l-selected{background:var(--ll-pink);border-color:var(--ll-pink)}.form-page .seat-legend .l-priority{background:#342b50;border-color:#aa8fe3}
+.form-page .back-seat-row{gap:8px}.form-page .back-label{font-size:10px;color:var(--ll-muted)}
+.form-page .wizard-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:12px;margin-top:32px;padding-top:24px}
+.form-page .button,.form-page .wizard-next{min-height:50px;border:1px solid var(--ll-pink);border-radius:2px;background:var(--ll-pink);color:#24112a;font-size:12px}
+.form-page .button-ghost{background:transparent;border-color:var(--line);color:var(--booking-text)}
+.form-page .payment-schedule-grid>div,.form-page .payment-schedule-grid>div.current,.form-page .payment-schedule-head,.form-page .payment-account-head,.form-page .payment-account-body,.form-page .review-submit-status{background:var(--booking-surface);border-color:var(--line);color:var(--booking-text)}
+.form-page .review-submit-status{padding:20px;border-radius:12px}
+.form-page .modal-card{background:var(--ll-panel);border:1px solid var(--line);border-radius:24px;max-width:800px;width:100%;max-height:90dvh;overflow-y:auto;padding:32px}
+.form-page .review-item{min-width:0;background:var(--booking-surface);border-color:var(--line)}.form-page .review-item strong{overflow-wrap:anywhere}
+.form-page .form-message{color:#ffb4c4;font-size:13px;line-height:1.7}.form-page .form-message:empty{display:none}
+@media(hover:hover){.form-page button:not(:disabled):hover{border-color:var(--ll-pink)}.form-page .seat:not(:disabled):not(.selected):hover{background:#483052}.form-page .button:hover{background:#f5b8df;color:#24112a}.form-page .button-ghost:hover{background:var(--booking-selected);color:var(--booking-text)}}
+@media(max-width:1040px){.form-page .booking-shell{grid-template-columns:minmax(0,1fr);gap:24px}.form-page .progress-nav{position:static;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.form-page .progress-nav button{justify-content:center;padding:12px 4px;font-size:10px}.form-page .form-content{padding:0}}
+@media(max-width:760px){.form-page .booking-shell{padding-top:24px;gap:18px}.form-page .form-content{padding:0;border-radius:0}.form-page .booking-event{font-size:12px}.form-page .progress-nav{padding:5px;gap:2px}.form-page .progress-nav button{font-size:8px;padding:10px 2px;letter-spacing:0;min-height:48px}.form-page .progress-nav button span{display:none}.form-page .form-step-heading h2{font-size:25px}.form-page .form-step-heading p{font-size:13px}.form-page .field-grid,.form-page .package-guide,.form-page .pickup-date-row{grid-template-columns:minmax(0,1fr)}.form-page .package-guide-heading{flex-direction:column}.form-page #slot-total{display:block;align-self:flex-start}.form-page .ride-choices{gap:10px}.form-page .ride-choice{padding:16px}.form-page .ride-choice strong{font-size:18px}.form-page .ride-choice small{font-size:11px}.form-page .desired-seat-notice{padding:16px;gap:10px}.form-page .desired-seat-notice p{font-size:12px}.form-page .seat-map.bus-map{width:100%;min-width:0;max-width:100%;margin:0 auto;padding:12px}.form-page .seat.bus-seat{height:58px}.form-page .bus-seat-row{grid-template-columns:repeat(2,minmax(0,1fr)) 32px repeat(2,minmax(0,1fr));gap:4px}.form-page .seat.bus-seat small{font-size:7px}.form-page .wizard-actions{display:grid;grid-template-columns:minmax(0,1fr)}.form-page .wizard-actions .button{width:100%;min-width:0}.form-page .wizard-ready #review .submit-row{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}.form-page .passenger-package-assignments{display:grid}.form-page .package-assignment-heading{display:block}.form-page .modal-card{padding:22px 18px}.form-page .priority-toggle small{display:block}.form-page .priority-reason-grid{grid-template-columns:minmax(0,1fr)}.form-page .mobile-summary{gap:12px}.form-page .fare-line{gap:12px}.form-page .fare-line strong{overflow-wrap:anywhere}}
+
+.form-page .booking-header .booking-brand{padding:28px 16px}.form-page .booking-brand h1{font-size:36px}.form-page .booking-brand p{margin-top:12px}
+.form-page .progress-nav button span{display:inline;color:var(--ll-pink)}
+.form-page .progress-nav button.completed::after{display:inline;content:'✓';margin-left:auto;color:var(--ll-pink)}
+.form-page .package-brief{font-size:12px;line-height:1.65;margin:0;color:var(--ll-muted)}
+.form-page .package-inclusions-details{font-size:11px;line-height:1.7;color:var(--ll-muted)}
+.form-page .package-inclusions-details summary{cursor:pointer;color:var(--ll-pink);padding:6px 0}
+.form-page .package-inclusions-details summary:focus-visible{outline:2px solid var(--ll-pink);outline-offset:3px}
+.form-page .package-inclusions-details .booking-inclusions{margin:8px 0;padding-left:16px}
+.form-page .package-inclusions-details .booking-inclusions li{font-size:11px}
+.form-page .package-guide:has(> :nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:760px){.form-page .progress-nav button span,.form-page .progress-nav button.completed::after{display:none}.form-page .package-guide,.form-page .package-guide:has(> :nth-child(2):last-child){grid-template-columns:minmax(0,1fr)}.form-page .booking-brand h1{font-size:30px}}
+
+/* Mobile reading scale: fixed rem sizes, normal text wrapping and large controls. */
+@media(max-width:760px){
+ .form-page{--booking-body:1rem;--booking-label:.8125rem;--booking-note:.875rem;--booking-title:1.75rem;font-size:var(--booking-body)}
+ .form-page .booking-shell{gap:24px;padding-bottom:144px}
+ .form-page .progress-nav{position:sticky;top:0;z-index:50;display:flex;flex-direction:row;gap:0;padding:0;max-width:100%;min-width:0;overflow-x:auto;overscroll-behavior-x:contain;background:var(--ll-navy);border-bottom:1px solid var(--line);scroll-padding-inline:12px;scrollbar-width:thin}
+ .form-page .progress-nav button{flex:0 0 auto;width:auto;min-width:88px;min-height:60px;padding:18px 12px;font-size:.75rem;line-height:1.4;white-space:nowrap;text-align:center;border-bottom:2px solid transparent}
+ .form-page .progress-nav button.active{border-bottom-color:var(--ll-pink)}
+ .form-page .form-step{scroll-margin-top:84px}
+ .form-page .wizard-status{margin:0 0 24px}.form-page .wizard-status span{font-size:var(--booking-label);line-height:1.5}
+ .form-page .form-step-heading{gap:12px;margin-bottom:32px;align-items:flex-start}
+ .form-page .form-step-heading>span{font-size:var(--booking-note);padding-top:6px;flex:none}
+ .form-page .form-step-heading h2{font-size:var(--booking-title);line-height:1.2;letter-spacing:-.035em}
+ .form-page .form-step-heading p{font-size:var(--booking-body);line-height:1.65;margin-top:12px}
+ .form-page .field-label,.form-page .field label,.form-page .field>span{font-size:var(--booking-label);line-height:1.6}
+ .form-page .trip-choice-block{margin-top:32px}.form-page .trip-choice-first{margin-top:0}
+ .form-page .ride-choices{gap:12px}.form-page .ride-choice{padding:20px 14px;min-height:128px}
+ .form-page .ride-choice strong{font-size:1.375rem;line-height:1.3}.form-page .ride-choice small{font-size:var(--booking-note);line-height:1.65;margin-top:12px}
+ .form-page .package-guide-heading p:last-child{font-size:var(--booking-body);line-height:1.65}
+ .form-page .package-guide{gap:16px}
+ .form-page .package-guide .package-choice{display:grid;grid-template-columns:minmax(0,1fr) 80px;gap:8px 16px;padding:22px 18px;align-items:start}
+ .form-page .package-choice>.package-tier,.form-page .package-choice>strong,.form-page .package-choice>.package-brief,.form-page .package-choice>.package-inclusions-details,.form-page .package-choice>b,.form-page .package-choice>em{grid-column:1;min-width:0;overflow-wrap:anywhere}
+ .form-page .package-choice>.package-tier{font-size:var(--booking-label);line-height:1.5}
+ .form-page .package-guide .package-choice>strong{font-size:1.125rem;line-height:1.4}
+ .form-page .package-brief,.form-page .package-inclusions-details,.form-page .package-inclusions-details .booking-inclusions li{font-size:var(--booking-note);line-height:1.65}
+ .form-page .package-inclusions-details summary{font-size:var(--booking-note);padding:8px 0}
+ .form-page .package-guide .package-choice>b{margin:0;padding-top:14px;font-size:1.75rem;line-height:1.2}
+ .form-page .package-guide .package-choice>em{font-size:.75rem;line-height:1.5}
+ .form-page .package-choice>.slot-quantity{grid-column:2;grid-row:1/span 5;align-self:center;display:flex;flex-direction:column;align-items:stretch;gap:10px;width:80px;margin:0;padding:0;border:0;text-align:center}
+ .form-page .slot-quantity>span{font-size:.75rem;line-height:1.4;letter-spacing:0}
+ .form-page .slot-quantity select{height:64px;min-height:64px;font-size:1.5rem;font-weight:700;padding:10px;border-color:var(--ll-pink)}
+ .form-page .field input,.form-page .field select,.form-page .artist-preference-field select{font-size:var(--booking-body);min-height:54px;height:auto;line-height:1.5}
+ .form-page .field-grid{gap:22px}
+ .form-page .passenger-subheading>span,.form-page .priority-toggle strong,.form-page .artist-preference-field>label{font-size:var(--booking-label);line-height:1.6}
+ .form-page .passenger-subheading p,.form-page .priority-toggle small,.form-page .priority-reason-grid span,.form-page .file-note,.form-page .check-row,.form-page .artist-preference-help,.form-page .artist-preference-note,.form-page .artist-preference-surprise{font-size:var(--booking-note);line-height:1.65}
+ .form-page .priority-toggle>input{width:22px;height:22px;flex:none}.form-page .priority-reason-grid span{min-height:50px}
+ .form-page .passenger-package-row>div span,.form-page .passenger-package-row>div small,.form-page .passenger-package-row>p{font-size:var(--booking-note);line-height:1.6}
+ .form-page .passenger-package-row>div strong{font-size:1rem}
+ .form-page .seat-selection-progress{padding:16px;font-size:var(--booking-note);line-height:1.6}
+ .form-page #vehicle-label,.form-page .seat-legend{font-size:.75rem;line-height:1.6}
+ .form-page .desired-seat-notice h3{font-size:var(--booking-label);line-height:1.6}
+ .form-page .desired-seat-notice p,.form-page .mobile-swipe-hint,.form-page .seat-guide{font-size:var(--booking-note);line-height:1.65}
+ .form-page .seat.bus-seat strong{font-size:.8125rem}.form-page .seat.bus-seat small{font-size:.5625rem;line-height:1.5}.form-page .seat.bus-seat{height:60px}
+ .form-page .row-label,.form-page .back-label,.form-page .bus-front>small{font-size:.625rem}.form-page .driver-block,.form-page .entrance-block{font-size:.75rem}
+ .form-page .payment-highlight{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:24px 20px;background:linear-gradient(120deg,#33203f,#1c1427);border:0;border-left:3px solid var(--ll-pink)}
+ .form-page .payment-highlight>span{font-size:var(--booking-label);line-height:1.6}.form-page .payment-highlight>strong{font-size:2.25rem;line-height:1.2;overflow-wrap:anywhere}.form-page .payment-highlight>small{font-size:var(--booking-note);line-height:1.8}
+ .form-page .payment-schedule-head,.form-page .payment-schedule-grid>div,.form-page .payment-deadline-note,.form-page .route-notice p,.form-page .policy-list,.form-page .review-item small,.form-page .review-submit-note,.form-page .review-submit-status p{font-size:var(--booking-note);line-height:1.7}
+ .form-page .fare-line{font-size:var(--booking-note);line-height:1.65}.form-page .fare-line.total{font-size:1rem}.form-page .fare-line.total strong{font-size:1.75rem}
+ .form-page .review-item strong{font-size:1rem;line-height:1.65}
+ .form-page .button,.form-page .wizard-next{font-size:var(--booking-label);min-height:54px;line-height:1.5}
+ .form-page .mobile-summary{grid-template-columns:minmax(0,1fr) auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom))}.form-page .mobile-summary small{font-size:.75rem}.form-page .mobile-summary strong{font-size:.8125rem;line-height:1.5}.form-page .mobile-summary .button{font-size:.8125rem;min-height:50px}
+}
+
+@media(max-width:760px){.form-page .route-details summary,.form-page .policy-details summary,.form-page .booking-event,.form-page .payment-account-head,.form-page .payment-account-grid small,.form-page .payment-account-body p,.form-page .payment-account-body small,.form-page .upload-box .file-note,.form-page .field input[type=file]{font-size:var(--booking-note);line-height:1.65}.form-page .route-details summary b,.form-page .policy-details summary b{font-size:.75rem}.form-page .upload-box>strong,.form-page .payment-schedule-grid strong{font-size:1rem}}
+
+/* Compact package choices: name, offer, one-line description, fare and slots only. */
+.form-page .package-guide .package-choice{gap:8px;padding:20px}
+@media(max-width:760px){.form-page .package-guide .package-choice{gap:6px 14px;padding:20px 18px}.form-page .package-guide .package-choice>b{padding-top:10px}.form-page .package-choice>.slot-quantity{grid-row:1/span 5}.form-page .package-choice>.package-brief{font-size:.875rem;line-height:1.5}}
+
+/* Fit the entire physical bus layout on a phone: two seats, aisle, two seats. */
+@media(max-width:760px){
+ .form-page .seat-map.bus-map .bus-front{grid-template-columns:minmax(0,1fr) 48px minmax(0,1fr);gap:6px}
+ .form-page .seat-map.bus-map .lilibus-grid{min-width:0;gap:6px}
+ .form-page .seat-map.bus-map .bus-seat-row>*{min-width:0}
+ .form-page .seat-map.bus-map .bus-seat{padding:4px 1px;min-height:60px;border-radius:0}
+ .form-page .seat-map.bus-map .bus-seat strong{font-size:.8125rem;line-height:1.5}
+ .form-page .seat-map.bus-map .bus-seat small{font-size:.5rem;line-height:1.5;overflow-wrap:anywhere}
+ .form-page .seat-map.bus-map .row-label{font-size:.5625rem;line-height:1.4;white-space:normal}
+ .form-page .seat-map.bus-map .back-seat-row{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+ .form-page .seat-map.bus-map .back-seat-row .bus-seat{height:60px}
+ .form-page .seat-map.bus-map .driver-block,.form-page .seat-map.bus-map .entrance-block{border-radius:0;min-width:0}
+}
+
+.form-page .seat{font-size:.8125rem}.form-page .desired-seat-notice{padding:20px;gap:0}.form-page .desired-seat-notice h3{margin-bottom:10px}.form-page .desired-seat-notice p{margin:0;font-size:.875rem;line-height:1.7}

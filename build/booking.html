@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1235">
+<title>Reserve Your Shuttle | LaLaLakbay — LaLaLa Fest Manila 2027</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261006-6">
+<link rel="stylesheet" href="lalalakbay.css"><link rel="icon" href="assets/fansonboard-ph-logo.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet"><link rel="stylesheet" href="premium.css"><link rel="stylesheet" href="cosmic.css"><link rel="stylesheet" href="artist-preferences.css?v=20261015-visible"><link rel="stylesheet" href="booking-flow.css?v=20261015-seat-copy"><link rel="stylesheet" href="brand-logo.css?v=20261015-alpha"><link rel="stylesheet" href="add-ons.css?v=20261015-checkbox"><link rel="stylesheet" href="footer.css?v=20261015"></head>
+<body class="form-page"><div class="ll-preview-banner"><strong>Booking preview</strong> · Explore your trip. No reservations or payments are being accepted yet.</div>
+<header class="booking-header">
+<div class="site-header">
+<a class="service-mark" href="index.html">
+<span class="logo-frame">
+<img src="assets/fansonboard-ph-logo.png" alt="FansOnBoard PH">
+</span>
+<span>Shuttle Service</span>
+</a>
+<div>
+</div>
+<a class="text-link" href="index.html">← Back to Home</a>
+</div>
+<div class="booking-brand">
+<h1><img class="ll-logo ll-booking-logo" src="assets/lalalakbay-logo-transparent.png" alt="LaLaLakbay" width="1915" height="821"><span>LaLaLa Fest Manila 2027 Shuttle</span>
+</h1>
+<p>Concert shuttle reservation · Brought to you by FansOnBoard PH</p>
+</div>
+</header>
+<main id="booking-app">
+<form id="booking-form" novalidate>
+<div class="booking-shell">
+<div class="booking-event"><strong>LALALA FEST Manila</strong><span>January 14, 2027 · Philippine Arena, Bulacan</span></div>
+<nav class="progress-nav" aria-label="Reservation progress">
+<button type="button" class="active" data-step="trip">
+<span>01</span>Trip Plan</button>
+<button type="button" data-step="passengers">
+<span>02</span>Passengers</button>
+<button type="button" data-step="seats">
+<span>03</span>Seat Preferences</button>
+<button type="button" data-step="payment">
+<span>04</span>Payment</button>
+<button type="button" data-step="review">
+<span>05</span>Review</button>
+</nav>
+<div class="form-content">
+<section class="form-step" id="trip">
+<div class="form-step-heading">
+<span>01</span>
+<div>
+<h2>Plan Your Trip</h2>
+<p>Choose your vehicle, package slots, and pickup point.</p>
+</div>
+</div>
+<div class="trip-choice-block trip-choice-first">
+<p class="field-label">1 · Choose your vehicle</p>
+<div class="ride-choices">
+<button class="ride-choice active" type="button" data-booking-vehicle="bus">
+<strong>Bus</strong>
+<small>Assembly time TBA · 3 package options</small>
+</button>
+<button class="ride-choice" type="button" data-booking-vehicle="van">
+<strong>Van</strong>
+<small>Assembly time TBA · Regular or VIP Van</small>
+</button>
+</div>
+</div>
+<div class="trip-choice-block">
+<div class="package-guide-heading">
+<div>
+<p class="field-label">2 · Choose a package and slots</p>
+<p>Set how many passenger slots you want under each package.</p>
+</div>
+<strong id="slot-total">1 / 5 slots</strong>
+</div>
+<div class="mobile-slot-setup" id="mobile-slot-setup">
+</div>
+<div class="package-choices package-guide" id="booking-package-choices">
+</div>
+<p class="form-message" id="slot-message">
+</p>
+</div>
+<div class="trip-choice-block">
+<p class="field-label">3 · Choose your pickup point</p>
+<div class="field-grid">
+</div>
+</div>
+<fieldset class="booking-addons"><legend>Interested in concert-day add-ons?</legend><p>Check any add-on you’re interested in. No extra charge or reservation is added to your booking.</p><p id="lounge-included-note" role="status" aria-live="polite"></p><div class="addon-interest-choices"><label class="addon-interest-option" for="lounge-interest"><input id="lounge-interest" name="loungeInterest" type="checkbox" value="INTERESTED" aria-describedby="lounge-included-note"><span>I'm interested in the Bus Cooling Lounge</span></label><label class="addon-interest-option" for="meal-interest"><input id="meal-interest" name="mealInterest" type="checkbox" value="INTERESTED"><span>I'm interested in pre-order meals</span></label></div><small>Rates, access details, menu, and ordering deadline will be announced before the event.</small></fieldset><details class="route-notice route-details" id="pickup-notice">
+<summary>
+<span>Pickup and route notes</span>
+<b>View details +</b>
+</summary>
+<div>
+<p>
+<b id="window-notice">Bus pickup operations begin from Assembly time TBA.</b>
+</p>
+<p>SM Bacoor, SM Dasma, and Rodriguez, Rizal are van-only pickup points.</p>
+<p>If a vehicle does not fill up from one pickup location, it may serve 2–3 nearby pickup points before proceeding to Philippine Arena.</p>
+<p>Your final assembly time, route sequence, assigned vehicle, and exact meeting point will be announced before concert day.</p>
+</div>
+</details>
+</section>
+<section class="form-step" id="passengers">
+<div class="form-step-heading">
+<span>02</span>
+<div>
+<h2>Passenger Information</h2>
+<p>Add every passenger’s details and choose an artist or Random / Surprise Me for their freebies preference.</p>
+</div>
+</div>
+<input id="passenger-count" name="passengerCount" type="hidden" value="1">
+<div class="passenger-subheading">
+<span>Booking contact · Passenger 1</span>
+<p>This person will receive the booking confirmation and trip updates.</p>
+</div>
+<div class="field-grid">
+<div class="field">
+<label for="full-name">Primary Passenger Name</label>
+<input id="full-name" name="fullName" autocomplete="name" required>
+</div>
+<div class="field">
+<label for="email">Email</label>
+<input id="email" name="email" type="email" autocomplete="email" required>
+</div>
+<div class="field">
+<label for="contact">Contact Number</label>
+<input id="contact" name="contact" type="tel" autocomplete="tel" required>
+</div>
+<div class="field">
+<label for="telegram">Telegram Username</label>
+<input id="telegram" name="telegram" placeholder="@username" required>
+</div>
+<div class="field full">
+<label for="facebook">Facebook Profile or Link <em>Optional</em>
+</label>
+<input id="facebook" name="facebook" type="text" inputmode="url" autocomplete="off" placeholder="Optional — profile name or link">
+</div>
+</div>
+<div id="primary-artist-preference"></div>
+<div id="companions">
+</div>
+<div id="guardian-fields" class="companion-card" hidden>
+<h3>Guardian / Emergency Contact</h3>
+<p class="file-note">All minors must be accompanied by one paying adult.</p>
+<div class="field-grid">
+<div class="field">
+<label for="guardian-name">Contact Name</label>
+<input id="guardian-name" name="guardianName">
+</div>
+<div class="field">
+<label for="guardian-number">Contact Number</label>
+<input id="guardian-number" name="guardianNumber" type="tel">
+</div>
+</div>
+</div>
+<div class="priority-request">
+<label class="priority-toggle">
+<input id="priority-request" name="priorityRequest" type="checkbox">
+<span>
+<strong>Request priority / front seating</strong>
+<small>For eligible passengers who may need easier access or a more comfortable front seat.</small>
+</span>
+</label>
+<div id="priority-reasons" hidden>
+<p class="field-label">Reason — check all that apply</p>
+<div class="priority-reason-grid">
+<label>
+<input type="checkbox" name="priorityReason" value="Senior (60+)">
+<span>Senior (60+)</span>
+</label>
+<label>
+<input type="checkbox" name="priorityReason" value="Pregnancy / morning sickness">
+<span>Pregnancy / morning sickness</span>
+</label>
+<label>
+<input type="checkbox" name="priorityReason" value="Prone to motion sickness">
+<span>Prone to motion sickness</span>
+</label>
+<label>
+<input type="checkbox" name="priorityReason" value="PWD / limited mobility">
+<span>PWD / limited mobility</span>
+</label>
+<label>
+<input type="checkbox" name="priorityReason" value="Other assistance need">
+<span>Other assistance need</span>
+</label>
+</div>
+<p class="file-note">No medical diagnosis is required. Priority seats remain subject to availability and verification by the FansOnBoard PH team.</p>
+<p class="form-message" id="priority-message">
+</p>
+</div>
+</div>
+<div class="passenger-subheading package-assignment-heading">
+<span>Package per passenger</span>
+<p>Your selected package slots are matched to the passenger numbers shown below.</p>
+</div>
+<div id="passenger-package-assignments" class="passenger-package-assignments">
+</div>
+<div class="fare-summary">
+<div class="fare-line">
+<span>Vehicle Type</span>
+<strong id="summary-vehicle">Bus</strong>
+</div>
+<div class="fare-line">
+<span>Package Selection</span>
+<strong id="summary-package">1 package assigned</strong>
+</div>
+<div class="fare-line">
+<span>Passenger Count</span>
+<strong id="summary-count">1</strong>
+</div>
+<div class="fare-line total">
+<span>Estimated Total</span>
+<strong id="summary-total">₱0</strong>
+</div>
+</div>
+</section>
+<section class="form-step" id="seats">
+<div class="form-step-heading">
+<span>03</span>
+<div>
+<h2>Choose Your Seats</h2>
+<p id="seat-step-description">Choose one desired seat per passenger. Bus seat requests are not final assignments.</p>
+</div>
+</div>
+<div class="seat-toolbar">
+<strong id="vehicle-label">BUS SEATING</strong>
+<div class="seat-legend">
+<span>
+<i>
+</i>Available</span>
+<span>
+<i class="l-selected">
+</i>Selected</span>
+<span>
+<i class="l-priority">
+</i>Priority reserved</span>
+</div>
+</div>
+<div id="seat-selection-progress" class="seat-selection-progress" role="status" aria-live="polite"></div>
+<aside class="desired-seat-notice" id="desired-seat-notice" aria-labelledby="desired-seat-title"><div><h3 id="desired-seat-title">DESIRED SEATS ONLY — NOT YET FINAL</h3><p>Choose the seats your group prefers. These are requests, not guaranteed assignments. Pickup groups may merge when a bus is not full. For bookings made in 2026, final merged routes and seat assignments will be announced in the <strong>first week of January 2027</strong>.</p></div></aside>
+<p class="mobile-swipe-hint">Tap an available seat to select it.</p>
+<div class="seat-map-scroll">
+<div class="seat-map">
+<div class="driver">Front · Driver</div>
+<div class="seats" id="seat-grid">
+</div>
+</div>
+</div>
+<p class="form-message" id="seat-message">
+</p>
+</section>
+<section class="form-step" id="payment">
+<div class="form-step-heading">
+<span>04</span>
+<div>
+<h2>Payment</h2>
+<p>Secure every slot for ₱250 each, reach 50% by November 14, and complete your balance by December 31, 2026.</p>
+</div>
+</div>
+<div class="payment-highlight">
+<span>Installment plan starts at</span>
+<strong>₱250 / slot</strong>
+<small>50% due · November 14, 2026<br>Full payment · December 31, 2026</small>
+</div>
+<div class="field-grid">
+<div class="field">
+<label for="payment-channel">Payment Channel</label>
+<select id="payment-channel" name="paymentChannel" required>
+<option value="">Select channel</option>
+<option>GCash</option>
+<option>Maya</option>
+<option>Bank Transfer</option>
+</select>
+</div>
+<div class="field">
+<label for="payment-plan">Payment Plan</label>
+<select id="payment-plan" name="paymentPlan" required>
+<option value="full">Full Payment</option>
+<option value="installment">₱250 per Slot Installment Plan</option>
+</select>
+</div>
+<div class="field full">
+<div class="payment-account-details" id="payment-account-details" hidden aria-live="polite"></div>
+</div>
+<div class="field">
+<label for="reference-number">Reference Number</label>
+<input id="reference-number" name="referenceNumber" required>
+</div>
+<div class="field">
+<label for="amount-paid">Amount Paid</label>
+<input id="amount-paid" name="amountPaid" type="number" min="250" step="1" placeholder="Minimum ₱250 per slot" required>
+</div>
+<div class="field full">
+<div class="upload-box">
+<strong>Proof of Payment</strong>
+<p class="file-note">JPG, PNG, WEBP, or PDF · Maximum 4 MB</p>
+<input id="payment-proof" name="paymentProof" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required>
+<p class="form-message" id="file-message">
+</p>
+</div>
+</div>
+</div>
+<div class="payment-schedule" id="payment-schedule" aria-live="polite">
+</div>
+<div class="fare-summary">
+<div class="fare-line">
+<span>Payment plan</span>
+<strong id="due-plan">Full payment</strong>
+</div>
+<div class="fare-line total">
+<span>Minimum due now</span>
+<strong id="amount-due">₱0</strong>
+</div>
+</div>
+<p class="payment-deadline-note">Reservation payment: <strong>₱250 per slot</strong>. Full balance deadline: <strong>December 31, 2026</strong>. Late payments incur a <strong>₱100 fee per day</strong>.</p>
+</section>
+<section class="form-step" id="review">
+<div class="form-step-heading">
+<span>05</span>
+<div>
+<h2>Policies &amp; Review</h2>
+<p>Please read these details before submitting.</p>
+</div>
+</div>
+<div id="booking-policies">
+<h3>Important Booking Policies</h3>
+<ul class="policy-list">
+<li>Payments are strictly non-refundable.</li>
+<li>The installment plan starts with a minimum ₱250 payment per slot.</li>
+<li>At least 50% of the total fare must be paid by November 14, 2026.</li>
+<li>The full balance must be paid by December 31, 2026.</li>
+<li>A ₱100 late fee applies for every day a required payment is overdue.</li>
+<li>Each passenger in one group booking may select a different available package.</li>
+<li>Cooling Lounge access is open to everyone who avails it, subject to available capacity. Access is already included with the FOB VIP RIDE package.</li>
+<li>A strict 10-minute grace period applies to announced departures.</li>
+<li>Minors must be accompanied by one paying adult.</li>
+<li>A valid ID must be presented for passenger verification.</li>
+</ul>
+<a class="policy-view-link" href="booking-policy.html" target="_blank" rel="noopener noreferrer">View the complete Booking Policy ↗</a>
+</div>
+<label class="check-row">
+<input id="terms-check" type="checkbox" required>
+<span>I have read and agree to the <a href="assets/FOB-PH-TERMS-AND-CONDITIONS.pdf" target="_blank" rel="noopener noreferrer">FansOnBoard PH Terms &amp; Conditions</a> and <a href="booking-policy.html" target="_blank" rel="noopener noreferrer">Booking Policy</a>.</span>
+</label>
+<label class="check-row" id="privacy-consent">
+<input id="consent-check" type="checkbox" required>
+<span>I have read the <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and consent to FansOnBoard PH collecting and processing the submitted information for shuttle reservation, payment verification, passenger coordination, and concert-day operations.</span>
+</label>
+<p class="form-message" id="form-message">
+</p>
+<div class="submit-row">
+<a class="button button-ghost" href="index.html">Cancel</a>
+<button class="button" id="review-button" type="button">Review &amp; Submit Booking</button>
+</div>
+</section>
+</div>
+</div>
+</form>
+<div class="mobile-summary">
+<span>
+<small>Your Booking</small>
+<strong id="mobile-summary-line">1 passenger · Select a package <b>₱0</b>
+</strong>
+</span>
+<button class="button" id="mobile-continue" type="button">Continue</button>
+</div>
+</main>
+<section class="success-screen" id="success-screen" hidden>
+<div>
+<p class="eyebrow">Booking submitted</p>
+<h1>Reservation<br>received.</h1>
+<div class="reference">
+<small>Booking Reference</small>
+<strong id="booking-reference">FOB-LL-0001</strong>
+</div>
+<span class="status-pill">Pending Payment Verification</span>
+<div class="submission-status-list">
+<div class="complete"><span>01</span><p><strong>Booking saved</strong><small>Your reservation is now recorded.</small></p></div>
+<div class="current"><span>02</span><p><strong>Payment verification pending</strong><small>Our team will review your submitted payment proof.</small></p></div>
+<div><span>03</span><p><strong>Watch your email</strong><small>Your pending-booking acknowledgment is sent to <b id="confirmation-email">your email address</b>.</small></p></div>
+</div>
+<p class="success-reminder">Keep your booking reference. Your booking is subject to payment verification. Desired bus seats remain preferences; final routes and official seat assignments will be announced during the first week of January 2027.</p>
+<small>Shuttle Service by FansOnBoard PH</small>
+<div style="margin-top:30px">
+<a class="button" href="index.html">Return Home</a>
+</div>
+</div>
+</section>
+<div class="modal" id="review-modal" hidden role="dialog" aria-modal="true" aria-labelledby="review-title">
+<div class="modal-card">
+<p class="eyebrow">One last look</p>
+<h2 id="review-title">Review Your Booking</h2>
+<p class="review-submit-note">Check your information, then tap <strong>Submit Booking</strong> to create your reservation and send your payment for verification.</p>
+<div class="review-submit-status"><small>After you submit</small><strong>Pending Payment Verification</strong><p>Your booking will be saved and a pending-booking acknowledgment will be sent to your email.</p></div>
+<div class="review-grid" id="review-grid">
+</div>
+<div class="route-notice">
+<strong>Route Notice</strong>
+<p>If a vehicle does not fill up from one pickup location, it may serve 2–3 nearby pickup points before proceeding to Philippine Arena.</p>
+<p>Final pickup routing and assembly details will be announced before concert day.</p>
+</div>
+<p class="file-note">Booking managed by FansOnBoard PH</p>
+<p class="submit-error" id="submit-error" hidden role="alert"></p>
+<div class="modal-actions">
+<button type="button" class="button button-ghost" id="edit-booking">Edit Booking</button>
+<button type="button" class="button" id="confirm-booking">Submit Booking</button>
+</div>
+</div>
+</div>
+<div class="loading-overlay" id="loading-overlay" hidden>
+<div>
+<div class="loader">
+</div>
+<h2>Submitting your reservation…</h2>
+<p id="submission-progress-detail">Please do not close this page. Saving may take up to 30 seconds.</p>
+</div>
+</div>
+<footer class="ll-site-footer" aria-label="Site footer"><div class="ll-footer-grid"><div class="footer-brand"><a class="footer-home-link" href="index.html" aria-label="LaLaLakbay home"><img class="ll-logo footer-brand-mark" src="assets/lalalakbay-logo-transparent.png" alt="LaLaLakbay" width="1915" height="821" loading="lazy"></a><p class="footer-service-label">LaLaLa Fest Manila<br>Shuttle Service</p><div class="footer-service-provider"><span>Shuttle service by</span><img src="assets/fansonboard-ph-logo.png" alt="FansOnBoard PH" width="96" height="96" loading="lazy"></div></div><nav class="footer-column" aria-labelledby="footer-navigate"><h2 id="footer-navigate">Navigate</h2><a href="index.html">Home</a><a href="index.html#shuttles">Packages</a><a href="index.html#pickups">Pick up points</a><a href="index.html#how-it-works">How it works</a><a href="index.html#add-ons">Add-ons</a><a href="index.html#faqs">FAQs</a></nav><nav class="footer-column" aria-labelledby="footer-information"><h2 id="footer-information">Information</h2><a href="assets/FOB-PH-TERMS-AND-CONDITIONS.pdf" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a><a href="booking-policy.html">Booking Policy</a><a href="privacy.html">Privacy Policy</a><a href="balance.html">Pay Balance</a></nav><nav class="footer-column" aria-labelledby="footer-social"><h2 id="footer-social">Follow FansOnBoard PH</h2><a href="https://www.facebook.com/profile.php?id=61574150816211" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/fansonboard_ph/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://x.com/FansOnBoard_PH" target="_blank" rel="noopener noreferrer">X / Twitter</a><a href="https://www.tiktok.com/@fansonboard.ph" target="_blank" rel="noopener noreferrer">TikTok</a></nav></div><div class="ll-footer-legal"><p>Independent shuttle service by FansOnBoard PH. Not affiliated with LaLaLa Fest, its artists, Philippine Arena, or the official festival organizers.</p><span>© 2026 FansOnBoard PH</span></div></footer><script src="festival-data.js"></script>
+<script src="artist-preferences.js?v=20261015-visible"></script>
+<script src="app-config.js?v=20261015-preferences">
+</script>
+<script src="script.js?v=20261015-visible">
+</script>
+<script src="site-tools.js"></script></body>
+</html>

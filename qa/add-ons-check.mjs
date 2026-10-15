@@ -1,0 +1,17 @@
+import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
+const script=fs.readFileSync('build/script.js','utf8'),html=fs.readFileSync('build/index.html','utf8');
+assert.ok(html.indexOf('id="add-ons"')>html.indexOf('id="shuttles"'));assert.ok(html.indexOf('id="add-ons"')<html.indexOf('id="pickups"'));
+assert.ok(html.includes('hero-service-label'));assert.ok(html.includes('LaLaLa Fest Manila Shuttle Service'));
+const nodes={'#lounge-included-note':{textContent:''},'#lounge-interest':{disabled:false,value:'INTERESTED'}};
+const f=vm.createContext({selectedPackages:()=>f.packages,$:s=>nodes[s]});
+vm.runInContext(script.slice(script.indexOf('  const addOnInterestLabels='),script.indexOf('  function renderPaymentAccount()')),f);
+f.fd={get:k=>({loungeInterest:'INTERESTED',mealInterest:'MAYBE'}[k])};f.packages=[{lounge:false},{lounge:true}];
+assert.equal(vm.runInContext('collectAddOnInterest(fd).lounge',f),'INTERESTED');vm.runInContext('renderAddOnInterest()',f);assert.match(nodes['#lounge-included-note'].textContent,/1 Bus VIP/);assert.equal(nodes['#lounge-interest'].disabled,false);
+f.packages=[{lounge:true}];vm.runInContext('renderAddOnInterest()',f);assert.equal(nodes['#lounge-interest'].disabled,true);assert.equal(vm.runInContext('collectAddOnInterest(fd).lounge',f),'INCLUDED');
+f.packages=[{lounge:false}];vm.runInContext('renderAddOnInterest()',f);assert.equal(nodes['#lounge-interest'].disabled,false);assert.equal(nodes['#lounge-interest'].value,'INTERESTED');
+const b=vm.createContext({console});vm.runInContext(fs.readFileSync('apps-script/LaLaLakbay_Backend_Code.gs','utf8'),b);b.people=[{packageId:'normal-bus'},{packageId:'bus-lounge'}];b.interest={lounge:'INTERESTED',meals:'MAYBE'};
+const run=s=>vm.runInContext(s,b);assert.equal(run('normalizeAddOnInterest_(interest,people).loungeIncludedCount'),1);assert.equal(run('normalizeAddOnInterest_({},people).meals'),'UNSPECIFIED');
+b.interest.meals='FREE_MEAL';assert.throws(()=>run('normalizeAddOnInterest_(interest,people)'));b.interest={lounge:'INCLUDED',meals:'NOT_NOW'};assert.throws(()=>run('normalizeAddOnInterest_(interest,people)'));
+b.people=[{packageId:'bus-lounge'}];assert.equal(run('normalizeAddOnInterest_(interest,people).lounge'),'INCLUDED');b.people=[{packageId:'vip-van'}];assert.throws(()=>run('normalizeAddOnInterest_(interest,people)'));
+f.fd={get:()=>null};f.packages=[{lounge:false}];assert.equal(vm.runInContext('collectAddOnInterest(fd).lounge',f),'UNSPECIFIED');assert.equal(vm.runInContext('collectAddOnInterest(fd).meals',f),'UNSPECIFIED');f.fd={get:()=> 'INTERESTED'};assert.equal(vm.runInContext('collectAddOnInterest(fd).meals',f),'INTERESTED');
+console.log('PASS: add-ons after shuttles, explicit shuttle hero, optional interest collection, mixed/all-VIP handling, retained choices, valid server enums, unpriced interest and no VIP Van lounge entitlement.');
