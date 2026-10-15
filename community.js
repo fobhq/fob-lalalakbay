@@ -1,0 +1,22 @@
+(() => {
+ 'use strict';
+ const fandom=document.getElementById('fandom-filter'),type=document.getElementById('type-filter'),search=document.getElementById('project-search'),out=document.getElementById('community-results'),count=document.getElementById('result-count'),directory=document.getElementById('artist-directory');
+ const artists=window.LALALAKBAY_ARTISTS||[];
+ const posts=(window.LALALAKBAY_POSTS||[]).filter(p=>{try{return new URL(p.originalUrl).protocol==='https:';}catch{return false;}});
+ const normalize=value=>String(value||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+ const artistParam=new URLSearchParams(location.search).get('artist');
+ if(Array.from(fandom.options).some(option=>option.value===artistParam))fandom.value=artistParam;
+ const cards=[];
+ artists.forEach(artist=>{const card=document.createElement('button');card.type='button';card.className='directory-card';const title=document.createElement('strong');title.textContent=artist.name;const total=document.createElement('span');const n=posts.filter(p=>p.fandom===artist.name).length;total.textContent=n+' reviewed '+(n===1?'post':'posts')+' →';card.append(title,total);card.addEventListener('click',()=>{fandom.value=artist.name;type.value='all';search.value='';render();document.getElementById('search-heading').scrollIntoView({block:'start'});search.focus({preventScroll:true});});directory.append(card);cards.push([card,artist.name]);});
+ function render(){
+  const terms=normalize(search.value.trim()).split(/\s+/).filter(Boolean);
+  const shown=posts.filter(p=>(fandom.value==='all'||p.fandom===fandom.value)&&(type.value==='all'||p.type===type.value)&&terms.every(term=>normalize([p.title,p.fandom,p.type,p.organizer,p.location,p.time,p.requirements,p.status].join(' ')).includes(term)));
+  cards.forEach(([card,name])=>{const active=fandom.value===name;card.classList.toggle('active',active);card.setAttribute('aria-pressed',String(active));});
+  count.textContent=shown.length+' '+(shown.length===1?'post':'posts')+' · '+(fandom.value==='all'?'All fandoms':fandom.value)+(search.value.trim()?' · Search: '+search.value.trim():'');
+  const url=new URL(location.href);if(fandom.value==='all')url.searchParams.delete('artist');else url.searchParams.set('artist',fandom.value);history.replaceState(null,'',url);
+  out.replaceChildren();
+  if(!shown.length){const box=document.createElement('div');box.className='ll-empty';const h=document.createElement('h2');h.textContent=posts.length?'No posts match your search':fandom.value==='all'?'The fan directory is getting ready.':fandom.value+' projects are coming soon.';const p=document.createElement('p');p.textContent=posts.length?'Try another artist, post type, or search term.':'No reviewed posts are listed yet. Public projects, freebie spots, meetups, and sellers will appear here with their organizer’s original link and claiming details.';const a=document.createElement('a');a.className='ll-link';a.href='https://www.facebook.com/profile.php?id=61574150816211';a.target='_blank';a.rel='noopener';a.textContent='Share a public fan-project post ↗';box.append(h,p,a);out.append(box);return;}
+  const grid=document.createElement('div');grid.className='ll-posts';shown.forEach(p=>{const card=document.createElement('article');card.className='ll-post';const tag=document.createElement('span');tag.className='ll-status';tag.textContent=p.fandom+' · '+p.type+' · '+(p.status||'Upcoming');const h=document.createElement('h2');h.textContent=p.title;card.append(tag,h);for(const [label,value] of [['Organizer',p.organizer],['Location',p.location||'TBA'],['Time',p.time||'TBA'],['Requirements',p.requirements||'See original post'],['Checked',p.checkedDate]]){if(!value)continue;const row=document.createElement('p');const strong=document.createElement('strong');strong.textContent=label+': ';row.append(strong,document.createTextNode(value));card.append(row);}const a=document.createElement('a');a.className='ll-link';a.href=p.originalUrl;a.target='_blank';a.rel='noopener';a.textContent='View original post ↗';card.append(a);grid.append(card);});out.append(grid);
+ }
+ fandom.addEventListener('change',render);type.addEventListener('change',render);search.addEventListener('input',render);document.getElementById('reset-filters').addEventListener('click',()=>{fandom.value='all';type.value='all';search.value='';render();search.focus();});render();
+})();
