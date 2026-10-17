@@ -1,3 +1,0 @@
-Built-in image_gen edit; transparent_background=true.
-
-Use case: background-extraction. Edit target: supplied LaLaLakbay logo. Remove only the solid deep navy background, including the background in letter counters and gaps. Output a real transparent PNG with alpha. Preserve the exact existing wordmark text LaLaLakbay, letter shapes, proportions, composition, glossy chrome material, pink/orange/blue/violet colors, white highlights, and soft colored edge glow. Do not redesign or retype, add elements, or change the artwork. Keep the entire wordmark including the y descender, with a little transparent safety padding around glow. No checkerboard drawn into the image, no solid background, no shadow backdrop.

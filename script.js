@@ -77,7 +77,11 @@
   const packagePriceText=p=>{const prices=[...new Set(datePrices(p))].sort((a,b)=>a-b);return prices.length===1?money(prices[0]):`${money(prices[0])}–${money(prices.at(-1))}`;};
   const packageById=id=>C.packages[state.vehicle].find(p=>p.id===id);
   const selectedPackages=()=>state.packageIds.slice(0,state.count).map(id=>packageById(id)||C.packages[state.vehicle][0]);
-  const bookingTotal=()=>selectedPackages().reduce((total,p)=>total+datePrices(p).reduce((sum,price)=>sum+price,0),0);
+  let promoRemaining=0;
+  const fareBeforePromo=()=>selectedPackages().reduce((total,p)=>total+datePrices(p).reduce((sum,price)=>sum+price,0),0);
+  const promoPassengerCount=()=>C.first10Promo&&!/\bTEST[\s_-]*ONLY\b/i.test(($('#full-name')?.value||'')+' '+($('#reference-number')?.value||''))?Math.min(state.count,promoRemaining):0;
+  const promoDiscount=()=>promoPassengerCount()*50;
+  const bookingTotal=()=>Math.max(0,fareBeforePromo()-promoDiscount());
   const planLabels={full:"Full payment",installment:"₱250 per Slot Installment Plan"};
   function getPaymentPlan(total){
     const type=$("#payment-plan")?.value||"full";
@@ -109,7 +113,8 @@
       const data=await response.json();
       if(!data.ok || data.campaignId!==C.campaignId)throw new Error(data.error||"This booking connection belongs to a different campaign.");
       state.availability[key]=Object.fromEntries((data.seats||[]).map(item=>[String(item.seat),String(item.status||"").toUpperCase()]));
-      renderSeats();
+      if(data.first10Promo)promoRemaining=Math.max(0,Math.min(10,Number(data.first10Promo.remaining)||0));
+      renderSummary();renderSeats();
     }catch(error){
       delete state.availability[key];renderSeats();$("#seat-message").textContent="Live seat availability could not be refreshed. Please try again before submitting.";
       console.error(error);
@@ -168,6 +173,8 @@
     $("#summary-count").textContent=String(state.count);
     $("#summary-dates").textContent="January 14, 2027";
     $("#summary-total").textContent=money(total);
+    if(!$('#first10-summary'))$('#summary-total').closest('.fare-total, .fare-line').insertAdjacentHTML('beforebegin','<div class="fare-line" id="first10-summary" role="status"></div>');
+    const promoBox=$('#first10-summary');if(promoBox){const eligible=promoPassengerCount();promoBox.hidden=!eligible;promoBox.textContent=eligible?'First 10 passengers: −'+money(promoDiscount())+' + '+eligible+' extra freebie(s). '+eligible+' eligible passenger(s); final eligibility checked on submission.':'';}
     const plan=getPaymentPlan(total);
     $("#due-plan").textContent=plan.label;
     $("#amount-due").textContent=money(plan.dueNow);
@@ -263,7 +270,7 @@
       legend.innerHTML=`<span><i></i>Available</span><span><i class="l-selected"></i>Selected</span><span><i class="l-priority"></i>${priorityAccess?'Priority eligible':'Priority eligibility required'}</span>`;
       grid.closest('.seat-map').classList.add('bus-map');
     }else{
-      const live=state.availability[`van|${state.activeSeatDate}`]||{};let number=1;for(let i=0;i<Math.ceil(15/4)*5;i++){if(i%5===2){html+='<span aria-hidden="true"></span>';continue;}if(number>15)break;const id=String(number),unavailable=C.bookingEnabled?live[id]!=="AVAILABLE":["LOCKED","BOOKED","ON HOLD"].includes(live[id]||"");html+=`<button type="button" class="seat ${unavailable?'unavailable':''} ${activeSeats.includes(id)?'selected':''}" aria-pressed="${activeSeats.includes(id)}" data-seat="${id}" ${unavailable?'disabled':''}>${id}</button>`;number++;}
+      const capacity=state.packageIds.includes("vip-van")?12:14;for(let at=activeSeats.length-1;at>=0;at--)if(Number(activeSeats[at])>capacity)activeSeats.splice(at,1);renderSeatProgress();const live=state.availability[`van|${state.activeSeatDate}`]||{};let number=1;for(let i=0;i<Math.ceil(capacity/4)*5;i++){if(i%5===2){html+='<span aria-hidden="true"></span>';continue;}if(number>capacity)break;const id=String(number),unavailable=C.bookingEnabled?live[id]!=="AVAILABLE":["LOCKED","BOOKED","ON HOLD"].includes(live[id]||"");html+=`<button type="button" class="seat ${unavailable?'unavailable':''} ${activeSeats.includes(id)?'selected':''}" aria-pressed="${activeSeats.includes(id)}" data-seat="${id}" ${unavailable?'disabled':''}>${id}</button>`;number++;}
       legend.innerHTML='<span><i></i>Available</span><span><i class="l-selected"></i>Selected</span>';
       grid.closest('.seat-map').classList.remove('bus-map');
     }
@@ -355,7 +362,7 @@
     const priorityReasonValues=$$('input[name="priorityReason"]:checked').map(box=>box.value);
     const companionContactPlan=companionNames.map((name,index)=>`${name}: ${companionContacts[index]}`).join(" · ");
     const preferenceReview=collectPassengers(fd).map((passenger,index)=>passenger.artistPreference?'<div class="review-preference">'+reviewItem('Passenger '+(index+1)+' · '+passenger.name,'Package: '+packages[index].name+' · Artist Preference: '+artistPreferences.label(passenger.artistPreference))+'</div>':'').join('');
-    $("#review-grid").innerHTML=reviewItem("Event","LALALA FEST Manila")+reviewItem("Date","January 14, 2027")+reviewItem("Venue","Philippine Arena, Bulacan")+reviewItem("Vehicle",state.vehicle.toUpperCase())+reviewItem("Pickup Points",pickupPlan)+reviewItem("Pickup Window",state.vehicle==='bus'?"Assembly time TBA":"Assembly time TBA")+reviewItem("Primary Passenger",fd.get("fullName"))+reviewItem("Email",fd.get("email"))+reviewItem("Contact Number",fd.get("contact"))+reviewItem("Companions",companionNames.join(", ")||"None")+reviewItem("Companion Contact Numbers",companionContactPlan||"None")+reviewItem("Passenger Count",state.count)+reviewItem("Package Per Passenger",packagePlan)+preferenceReview+reviewItem("Fare Per Passenger",farePlan)+reviewItem("Cooling Lounge Access",loungePassengers.join(", ")||"None")+reviewItem("Lounge interest — no extra charge",addOnInterestLabels[collectAddOnInterest(fd).lounge])+reviewItem("Meal interest — no extra charge",addOnInterestLabels[collectAddOnInterest(fd).meals])+reviewItem("Priority Seating Request",priorityRequest.checked?priorityReasonValues.join(", "):"No")+reviewItem(state.vehicle==='bus'?"Desired seats — not final":"Van seats",seatPlan)+reviewItem("Payment Channel",fd.get("paymentChannel"))+reviewItem("Payment Reference",fd.get("referenceNumber"))+reviewItem("Payment Plan",paymentPlan.label)+reviewItem("Plan Schedule",schedulePlan)+reviewItem("Amount Submitted",money(paid))+reviewItem("Remaining Balance",money(Math.max(total-paid,0)))+reviewItem("50% Deadline","November 14, 2026")+reviewItem("Full-payment Deadline","December 31, 2026")+reviewItem("Late Fee","₱100 per overdue day")+reviewItem("Total Fare",money(total));
+    $("#review-grid").innerHTML=reviewItem("Event","LALALA FEST Manila")+reviewItem("Date","January 14, 2027")+reviewItem("Venue","Philippine Arena, Bulacan")+reviewItem("Vehicle",state.vehicle.toUpperCase())+reviewItem("Pickup Points",pickupPlan)+reviewItem("Pickup Window",state.vehicle==='bus'?"Assembly time TBA":"Assembly time TBA")+reviewItem("Primary Passenger",fd.get("fullName"))+reviewItem("Email",fd.get("email"))+reviewItem("Contact Number",fd.get("contact"))+reviewItem("Companions",companionNames.join(", ")||"None")+reviewItem("Companion Contact Numbers",companionContactPlan||"None")+reviewItem("Passenger Count",state.count)+reviewItem("Package Per Passenger",packagePlan)+preferenceReview+reviewItem("Fare Per Passenger",farePlan)+reviewItem("Cooling Lounge Access",loungePassengers.join(", ")||"None")+reviewItem("Lounge interest — no extra charge",addOnInterestLabels[collectAddOnInterest(fd).lounge])+reviewItem("Meal interest — no extra charge",addOnInterestLabels[collectAddOnInterest(fd).meals])+reviewItem("Priority Seating Request",priorityRequest.checked?priorityReasonValues.join(", "):"No")+reviewItem(state.vehicle==='bus'?"Desired seats — not final":"Van seats",seatPlan)+reviewItem("Payment Channel",fd.get("paymentChannel"))+reviewItem("Payment Reference",fd.get("referenceNumber"))+reviewItem("Payment Plan",paymentPlan.label)+reviewItem("Plan Schedule",schedulePlan)+reviewItem("Amount Submitted",money(paid))+reviewItem("Remaining Balance",money(Math.max(total-paid,0)))+reviewItem("50% Deadline","November 14, 2026")+reviewItem("Full-payment Deadline","December 31, 2026")+reviewItem("Late Fee","₱100 per overdue day")+reviewItem("First 10 passenger perk",promoPassengerCount()?`${promoPassengerCount()} passenger(s) · ${money(promoDiscount())} discount + ${promoPassengerCount()} extra freebie(s)`:"Not applied")+reviewItem("Total Fare",money(total));
     $("#review-modal").hidden=false;document.body.style.overflow="hidden";
   });
   $("#edit-booking").addEventListener("click",()=>{$("#review-modal").hidden=true;document.body.style.overflow="";});

@@ -29,14 +29,14 @@
   $('#balance-channel').addEventListener('change',()=>{const channel=$('#balance-channel').value,a=C.paymentAccounts[channel];panel.replaceChildren();panel.hidden=!a;if(!a)return;const name=document.createElement('strong');name.textContent=a.qrOnly?a.bank+' · official QR':a.name+' · '+a.number;const note=document.createElement('p');note.textContent=a.note;const img=document.createElement('img');img.src=a.qrImage;img.alt=channel+' payment QR';img.style.maxWidth='220px';panel.append(name,note,img);});
   $('#balance-form').addEventListener("submit",async e=>{
     e.preventDefault();if(!C.bookingEnabled||!C.backendUrl)return;if(!e.currentTarget.checkValidity()){e.currentTarget.reportValidity();return;}if(!currentBooking){$("#balance-message").textContent="Please find your booking first.";return;}
-    const button=e.currentTarget.querySelector('button[type="submit"]'),amount=Number($("#balance-amount").value),limit=Number(currentBooking.totalDue)||Number(currentBooking.remainingBalance);
+    const balanceForm=e.currentTarget,button=balanceForm.querySelector('button[type="submit"]'),amount=Number($("#balance-amount").value),limit=Number(currentBooking.totalDue)||Number(currentBooking.remainingBalance);
     if(amount<=0||amount>limit){$("#balance-message").textContent=`Enter an amount from ₱1 to ${money(limit)}.`;return;}
     button.disabled=true;$("#balance-message").textContent="Submitting payment for verification…";
     try{
       const payload={action:"balance",bookingRef:currentBooking.bookingRef,email:currentBooking.email,paymentChannel:$("#balance-channel").value,referenceNumber:$("#balance-reference").value.trim(),amountPaid:amount,paymentProof:await filePayload($("#balance-proof").files[0])};
       const response=await fetch(C.backendUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}),result=await response.json();
       if(!result.ok)throw new Error(result.error||"Payment could not be submitted.");
-      $("#balance-message").textContent="";$("#balance-success").hidden=false;e.currentTarget.hidden=true;$("#balance-success").scrollIntoView({behavior:"smooth",block:"center"});
+      $("#balance-message").textContent="";$("#balance-success").hidden=false;balanceForm.hidden=true;$("#balance-success").scrollIntoView({behavior:"smooth",block:"center"});
     }catch(error){$("#balance-message").textContent=error.message||"Payment could not be submitted. Please try again.";button.disabled=false;}
   });
 })();

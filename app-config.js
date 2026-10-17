@@ -1,9 +1,10 @@
 window.FOB_CONFIG = {
-  backendUrl: "",
-  bookingEnabled: false,
+  backendUrl: "https://script.google.com/macros/s/AKfycbyvJ30RsRD2SFTxGnmkI4qdMuAYyQDHmppeX6DjgVR-Yym4yGVbu7Xv85ijWVrrjhWwmg/exec",
+  bookingEnabled: true,
   campaignId: "lalalakbay-2027",
-  previewMode: true,
+  previewMode: false,
   deadlines: { half: "November 14, 2026", full: "December 31, 2026" },
+  first10Promo: {limit: 10, discountPerPassenger: 50},
   maxPassengers: 5,
   maxFileSize: 4 * 1024 * 1024,
   eventDates: ["January 14"],
